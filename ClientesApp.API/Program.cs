@@ -1,4 +1,5 @@
 using ClientesApp.API.Extensions;
+using ClientesApp.Infra.Data.SqlServer.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddSwaggerConfig();
+
+builder.Services.AddEntityFramework(builder.Configuration);
 
 var app = builder.Build();
 
