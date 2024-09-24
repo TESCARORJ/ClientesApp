@@ -40,22 +40,22 @@ jobs:
           path: ./myapp.zip  # Fazer upload do arquivo ZIP
 
   test:
-        runs-on: windows-latest
-        needs: build
+    runs-on: windows-latest
+    needs: build
 
 
-        steps:
-        - uses: actions/checkout@v4
+    steps:
+    - uses: actions/checkout@v4
 
 
-        - name: Set up .NET Core
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '8.x'
+    - name: Set up .NET Core
+    uses: actions/setup-dotnet@v4
+    with:
+    dotnet-version: '8.x'
 
 
-        - name: Run tests with dotnet
-        run: dotnet test ClientesApp.Infra.Data.SqlServer.Tests/ClientesApp.Infra.Data.SqlServer.Tests.csproj --configuration Release
+    - name: Run tests with dotnet
+    run: dotnet test ClientesApp.Infra.Data.SqlServer.Tests/ClientesApp.Infra.Data.SqlServer.Tests.csproj --configuration Release
 
 
   deploy:
