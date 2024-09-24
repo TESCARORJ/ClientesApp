@@ -39,7 +39,7 @@ jobs:
           name: .net-app
           path: ./myapp.zip  # Fazer upload do arquivo ZIP
 
-    test:
+  test:
         runs-on: windows-latest
         needs: build
 
