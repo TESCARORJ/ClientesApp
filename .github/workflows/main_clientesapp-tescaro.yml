@@ -53,14 +53,13 @@ jobs:
     with:
     dotnet-version: '8.x'
 
-
     - name: Run tests with dotnet
     run: dotnet test ClientesApp.Infra.Data.SqlServer.Tests/ClientesApp.Infra.Data.SqlServer.Tests.csproj --configuration Release
 
 
   deploy:
     runs-on: windows-latest
-    needs: build
+    needs: test
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
