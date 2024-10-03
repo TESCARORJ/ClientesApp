@@ -109,7 +109,7 @@ namespace ClientesApp.Domain.Tests
 
             Func<Task> act = async () => await _clienteDomainService.DeleteAsync(clienteId);
 
-            var exception = await act.Should().ThrowAsync<ClienteNotFoundExption>()
+            var exception = await act.Should().ThrowAsync<ClienteNotFoundException>()
                 .WithMessage($"Cliente com ID {clienteId} não encontrado.");
         }
 

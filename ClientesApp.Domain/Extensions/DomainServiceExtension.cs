@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace ClientesApp.Domain.Extensions
 {
-    public static class ClienteDomainServiceExtension
+    public static class DomainServiceExtension
     {
         public static IServiceCollection AddDomainService(this IServiceCollection services)
         {

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ClientesApp.Domain.Exceptions
 {
-    public class ClienteNotFoundExption : Exception
+    public class ClienteNotFoundException : Exception
     {
-        public ClienteNotFoundExption(Guid clienteId) : base($"Cliente com ID {clienteId} não encontrado.")
+        public ClienteNotFoundException(Guid clienteId) : base($"Cliente com ID {clienteId} não encontrado.")
         {
         }
 

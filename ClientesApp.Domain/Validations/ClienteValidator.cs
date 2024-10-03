@@ -4,6 +4,7 @@ using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,45 +13,54 @@ namespace ClientesApp.Domain.Validations
     public class ClienteValidator : AbstractValidator<Cliente>
     {
         private readonly IClienteRepository _clienteRepository;
-        
+        private Guid? _currentClienteId;
+
         public ClienteValidator(IClienteRepository clienteRepository)
         {
             _clienteRepository = clienteRepository;
+            ConfigureRules();
         }
 
-        public ClienteValidator()
+        //método para receber o ID do cliente
+        public void SetCurrentClienteId(Guid clienteId)
+        {
+            _currentClienteId = clienteId;
+        }
+
+        private void ConfigureRules()
         {
             RuleFor(c => c.Id)
-                .NotEqual(Guid.Empty).WithMessage("O id do cliente é obrigatório.");
+                .NotEmpty().WithMessage("O Id é obrigatório")
+                   .Must(id => id != Guid.Empty).WithMessage("O Id não pode ser igual ao valor padrão.");
 
             RuleFor(c => c.Nome)
-                .NotEmpty().WithMessage("O nome do cliente é obrigatório.")
-                .MaximumLength(150).WithMessage("O nome do cliente deve ter no máximo 100 caracteres.");
+                .NotEmpty().WithMessage("O nome é obrigatório.")
+                .Length(8, 150).WithMessage("O nome deve ter de 8 a 150 caracteres.");
 
             RuleFor(c => c.Email)
-                .NotEmpty().WithMessage("O e-mail do cliente é obrigatório.")
-                .MaximumLength(100).WithMessage("O e-mail do cliente deve ter no máximo 100 caracteres.")
-                .EmailAddress().WithMessage("O e-mail do cliente é inválido.")
-                .MustAsync(BeUniqueEmail).WithMessage("O Email do cliente já está em uso."); ;
-
+                .NotEmpty().WithMessage("O email é obrigatório.")
+                .EmailAddress().WithMessage("O email deve ter um endereço de email válido.")
+                .MustAsync(BeUniqueEmail).WithMessage("O email já está em uso.");
 
             RuleFor(c => c.Cpf)
-                .NotEmpty().WithMessage("O CPF do cliente é obrigatório.")
-                .MaximumLength(11).WithMessage("O CPF do cliente deve ter no máximo 11 caracteres.")
-                .Matches(@"^\d{3}\.\d{3}\.\d{3}-\d{2}$").WithMessage("O CPF do cliente é inválido.")
-                .MustAsync(BeUniqueCpf).WithMessage("O CPF do cliente já está em uso.");
-
+                .NotEmpty().WithMessage("O CPF é obrigatório.")
+                .Matches(@"^\d{11}$").WithMessage("O CPF deve ter 11 dígitos.")
+                .MustAsync(BeUniqueCpf).WithMessage("O cpf já está em uso.");
         }
 
         private async Task<bool> BeUniqueEmail(string email, CancellationToken cancellationToken)
         {
-            return await _clienteRepository.VerifyExistsAsync(c => c.Email.Equals(email));
+            return !await _clienteRepository.VerifyExistsAsync
+                (c => c.Email.Equals(email) && c.Id != _currentClienteId);
         }
 
         private async Task<bool> BeUniqueCpf(string cpf, CancellationToken cancellationToken)
         {
-            return await _clienteRepository.VerifyExistsAsync(c => c.Cpf.Equals(cpf));
+            return !await _clienteRepository.VerifyExistsAsync
+                (c => c.Cpf.Equals(cpf) && c.Id != _currentClienteId);
         }
     }
-
 }
+
+
+

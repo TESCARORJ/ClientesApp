@@ -56,7 +56,7 @@ namespace ClientesApp.Infra.Data.SqlServer.Repositories
 
         public virtual void Dispose()
         {
-            throw new NotImplementedException();
+            _dataContext.Dispose();
         }
     }
 }
