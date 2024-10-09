@@ -1,4 +1,4 @@
-﻿using ClientesApp.Application.Interfaces;
+﻿using ClientesApp.Application.Interfaces.Applications;
 using ClientesApp.Application.Mappings;
 using ClientesApp.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,13 +14,20 @@ namespace ClientesApp.Application.Extensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            //injeção de dependênciapara o AutoMapper
+            //injeção de dependência para o AutoMapper
             services.AddAutoMapper(typeof(ClienteProfileMap));
 
-            //injeção de dependência para o serviço de aplicação    
+            //injeção de dependência para o MediatR
+            services.AddMediatR(m => m.RegisterServicesFromAssemblies
+                (AppDomain.CurrentDomain.GetAssemblies()));
+
+            //injeção de dependência para os serviços de aplicação
             services.AddTransient<IClienteAppService, ClienteAppService>();
 
             return services;
         }
     }
 }
+
+
+

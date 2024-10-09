@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ClientesApp.Application.Interfaces
+namespace ClientesApp.Application.Interfaces.Applications
 {
     public interface IClienteAppService : IDisposable
     {

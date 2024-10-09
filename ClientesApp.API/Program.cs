@@ -3,6 +3,7 @@ using ClientesApp.Infra.Data.SqlServer.Extensions;
 using ClientesApp.Domain.Extensions;
 using ClientesApp.Application.Extensions;
 using ClientesApp.API.Middlewares;
+using ClientesApp.Infra.Data.MongoDB.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,7 @@ builder.Services.AddEntityFramework(builder.Configuration);
 
 builder.Services.AddApplicationServices();
 builder.Services.AddDomainService();
+builder.Services.AddMongoDb(builder.Configuration);
 
 var app = builder.Build();
 
