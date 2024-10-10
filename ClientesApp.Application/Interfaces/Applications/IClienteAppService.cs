@@ -14,5 +14,6 @@ namespace ClientesApp.Application.Interfaces.Applications
         Task<ClienteResponseDto> DeleteAsync(Guid id);
         Task<List<ClienteResponseDto>> GetManyAsync(string nome);
         Task<ClienteResponseDto?> GetByIdAsync(Guid id);
+        Task<LogClienteResponseDto> GetLogs(Guid id, LogClienteRequestDto request);
     }
 }

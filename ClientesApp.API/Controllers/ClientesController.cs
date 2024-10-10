@@ -17,46 +17,48 @@ namespace ClientesApp.API.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(ClienteResponseDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ClienteResponseDto), 201)]
         public async Task<IActionResult> Post([FromBody] ClienteRequestDto request)
         {
-            var response = await _clienteAppService.AddAsync(request);
-            return Ok(response);
+            return StatusCode(201, await _clienteAppService.AddAsync(request));
         }
 
         [HttpPut("{id}")]
-        //[Route("editar")]
-        [ProducesResponseType(typeof(ClienteResponseDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ClienteResponseDto), 200)]
         public async Task<IActionResult> Put(Guid id, [FromBody] ClienteRequestDto request)
         {
-            var response = await _clienteAppService.UpdateAsync(id, request);
-            return Ok(response);
-
+            return StatusCode(200, await _clienteAppService.UpdateAsync(id, request));
         }
 
-        [HttpDelete]
-        [ProducesResponseType(typeof(ClienteResponseDto), StatusCodes.Status200OK)]
+        [HttpDelete("{id}")]
+        [ProducesResponseType(typeof(ClienteResponseDto), 200)]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var response = await _clienteAppService.DeleteAsync(id);
-            return Ok(response);
+            return StatusCode(200, await _clienteAppService.DeleteAsync(id));
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(List<ClienteResponseDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(List<ClienteResponseDto>), 200)]
         public async Task<IActionResult> GetMany([FromQuery] string nome)
         {
-            var response = await _clienteAppService.GetManyAsync(nome);
-            return Ok(response);
+            return StatusCode(200, await _clienteAppService.GetManyAsync(nome));
         }
 
-
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(ClienteResponseDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ClienteResponseDto), 200)]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var response = await _clienteAppService.GetByIdAsync(id);
-            return Ok(response);
+            return StatusCode(200, await _clienteAppService.GetByIdAsync(id));
+        }
+
+        [HttpGet("logs/{id}")]
+        [ProducesResponseType(typeof(LogClienteResponseDto), 200)]
+        public async Task<IActionResult> GetLogs(Guid id, [FromQuery] LogClienteRequestDto request)
+        {
+            return StatusCode(200, await _clienteAppService.GetLogs(id, request));
         }
     }
 }
+
+
+

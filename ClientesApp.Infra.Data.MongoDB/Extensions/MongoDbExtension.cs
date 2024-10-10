@@ -10,7 +10,7 @@ namespace ClientesApp.Infra.Data.MongoDB.Extensions
 {
     public static class MongoDbExtension
     {
-        public static IServiceCollection AddMongoDb(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddMongoDB(this IServiceCollection services, IConfiguration configuration)
         {
             //capturar as configurações do /appsettings
             var mongoDBSettings = new MongoDBSettings();

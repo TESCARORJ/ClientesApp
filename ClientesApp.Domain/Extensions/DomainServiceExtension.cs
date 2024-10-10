@@ -9,7 +9,7 @@ namespace ClientesApp.Domain.Extensions
 {
     public static class DomainServiceExtension
     {
-        public static IServiceCollection AddDomainService(this IServiceCollection services)
+        public static IServiceCollection AddDomainServices(this IServiceCollection services)
         {
             services.AddTransient<IClienteDomainService, ClienteDomainService>();
             services.AddTransient<IValidator<Cliente>, ClienteValidator>();
