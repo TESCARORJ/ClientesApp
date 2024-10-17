@@ -1,0 +1,20 @@
+# Tagueando a imagem do clientesapp
+docker tag clientesapp-clientesapp thiagotescarorj/clientesapp:latest
+
+# Tagueando a imagem do MongoDB
+docker tag mongo thiagotescarorj/mongodb:latest
+
+# Tagueando a imagem do SQL Server
+docker tag mcr.microsoft.com/mssql/server:2022-latest thiagotescarorj/sqlserver:latest
+
+# Tagueando a imagem do RabbitMQ
+docker tag rabbitmq:management thiagotescarorj/rabbitmq:latest
+
+================================================================================================================
+docker push thiagotescarorj/clientesapp:latest
+docker push thiagotescarorj/mongodb:latest
+docker push thiagotescarorj/sqlserver:latest
+docker push thiagotescarorj/rabbitmq:latest
+
+
+

@@ -24,13 +24,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens de Solução", "{81BEAF4A-8509-41A3-9E12-CE304F038AA5}"
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yml = docker-compose.yml
+		ExemploTagDocker.txt = ExemploTagDocker.txt
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientesApp.Infra.Data.SqlServer.Tests", "ClientesApp.Infra.Data.SqlServer.Tests\ClientesApp.Infra.Data.SqlServer.Tests.csproj", "{045BC0CC-D5E1-4DB7-8D79-B470584F140B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientesApp.Domain.Tests", "ClientesApp.Domain.Tests\ClientesApp.Domain.Tests.csproj", "{41810430-C21E-43D0-B190-C54E4B02238B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientesApp.Infra.Messages", "ClientesApp.Infra.Messages\ClientesApp.Infra.Messages.csproj", "{1EE91AB1-433E-49C4-876B-C2D6C108FD0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientesApp.Infra.Messages", "ClientesApp.Infra.Messages\ClientesApp.Infra.Messages.csproj", "{1EE91AB1-433E-49C4-876B-C2D6C108FD0E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
