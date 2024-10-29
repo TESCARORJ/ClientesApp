@@ -6,10 +6,6 @@ Projeto **ClienteApp API** desenvolvido com os conceitos de **DDD** (Domain-Driv
 - [Funcionalidades](#funcionalidades)
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
 - [Estrutura do Projeto](#estrutura-do-projeto)
-- [Instalação](#instalação)
-- [Execução](#execução)
-- [Contribuição](#contribuição)
-- [Licença](#licença)
 
 ## Funcionalidades
 
